@@ -48,3 +48,4 @@ The system downloads papers, extracts text content, and uses the Qwen3:8B langua
 2. Pull the Qwen3:8B model:
    ```bash
    ollama pull qwen3:8b
+   ollama serve
