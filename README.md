@@ -48,4 +48,17 @@ The system downloads papers, extracts text content, and uses the Qwen3:8B langua
 2. Pull the Qwen3:8B model:
    ```bash
    ollama pull qwen3:8b
+
+3. ```bash
    ollama serve
+4. Clone the repo
+   ```bash
+   git clone - https://github.com/shanthoshkv/AI-RESEARCH-PAPER-DOWNLOADER
+
+5. Install dependancies
+   ```bash
+   pip install -r requirements.txt
+
+6. Run the code
+   ```bash
+   python research_paper_downloader.py
