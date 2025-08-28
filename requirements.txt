@@ -1,0 +1,8 @@
+os
+requests
+urllib
+bs4 
+time
+re
+json
+PyPDF2
