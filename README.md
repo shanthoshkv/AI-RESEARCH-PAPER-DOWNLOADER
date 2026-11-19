@@ -1,6 +1,14 @@
 # Research Paper Downloader
 
-Bulk-downloads open-access research papers for a query and uses a local LLM to throw out the ones that aren't actually relevant.
+Bulk-downloads open-access papers from arXiv, DOAJ, PMC and PLOS ONE and keeps only those a local Ollama model judges relevant.
+
+![demo](docs/demo.gif)
+
+```bash
+git clone https://github.com/shanthoshkv/AI-RESEARCH-PAPER-DOWNLOADER && cd AI-RESEARCH-PAPER-DOWNLOADER && pip install -r requirements.txt
+```
+
+Also needs [Ollama](https://ollama.com/) running locally with `ollama pull qwen3:8b` (see Installation below).
 
 ## Overview
 
@@ -51,7 +59,6 @@ search_arxiv / search_doaj / search_pmc / search_plos
 git clone https://github.com/shanthoshkv/AI-RESEARCH-PAPER-DOWNLOADER
 cd AI-RESEARCH-PAPER-DOWNLOADER
 pip install -r requirements.txt
-pip install lxml   # required by search_arxiv's XML parser, missing from requirements.txt, see Known Issues
 ```
 
 You also need Ollama running locally with the model pulled:
@@ -90,8 +97,6 @@ There's a default `max_results=1000` on the arXiv search and no cap on DOAJ beyo
 
 ## Known issues
 
-- `requirements.txt` lists `os`, `urllib`, `time`, `re`, and `json` as dependencies. These are Python stdlib modules and don't need to be (and in some cases can't be) installed via pip. The real third-party dependencies are `requests`, `beautifulsoup4`, and `PyPDF2`.
-- `search_arxiv` parses the response with `BeautifulSoup(response.content, 'xml')`, which requires `lxml`. `lxml` isn't listed in `requirements.txt`, so a clean `pip install -r requirements.txt` will fail on arXiv search unless installed separately.
 - No retry/backoff beyond the one arXiv URL-format fallback. A flaky connection just gets logged as a failed download, not retried.
 - Rate limiting is a flat `time.sleep()` between requests, not adaptive to each API's actual rate limit.
 - `search_core` is dead code as shipped (needs a key this repo doesn't provide), left in for anyone who wants to wire in their own CORE API key.

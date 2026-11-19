@@ -1,8 +1,4 @@
-os
 requests
-urllib
-bs4 
-time
-re
-json
+beautifulsoup4
+lxml
 PyPDF2
